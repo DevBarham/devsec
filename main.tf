@@ -16,7 +16,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "nginx-server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name      = var.key_name
+  key_name      = "malhub_key"
   user_data     = file("./user-data-nginx.tpl")
   vpc_security_group_ids = [aws_security_group.instance-sg.id]
 
@@ -29,7 +29,7 @@ resource "aws_instance" "nginx-server" {
 resource "aws_instance" "apache-server" {
   ami           = "ami-007855ac798b5175e"
   instance_type = "t2.micro"
-  key_name      = var.key_name
+  key_name      = "malhub_key"
   user_data     = file("./user-data-apache.tpl")
   vpc_security_group_ids = [aws_security_group.instance-sg.id]
 
